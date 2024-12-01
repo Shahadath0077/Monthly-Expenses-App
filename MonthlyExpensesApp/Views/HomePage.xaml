@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MonthlyExpensesApp.Views.HomePage"                       
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="AliceBlue" 
+             Title="">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+
+    <VerticalStackLayout >
+
+        <Label
+             Margin="0,20"
+             Text="Hello"  
+             FontSize="20"
+             HorizontalOptions="Center" />
+        <!--<Label
+             Margin="0,-10"
+             Text="{Binding LoginDetail.UserName,Mode=OneTime}"  
+             FontSize="20"
+             HorizontalOptions="Center" />-->
+
+        <Label Margin="0,-10" 
+               x:Name="lblUserFullName" 
+               FontSize="18"
+               HorizontalTextAlignment="Center"/>
+        <Image 
+             Margin="0,50"
+             Source="user_profile.png"
+             HeightRequest="100"  
+             WidthRequest="100"
+             HorizontalOptions="Center"/>
+
+        <!--<Button
+             Margin="30,20"
+             Padding="10,20"
+             HeightRequest="70"
+             WidthRequest="280"             
+             Text="Password Manager"
+             BackgroundColor="Teal"
+             FontSize="22"
+             HorizontalOptions="FillAndExpand"/>-->
+
+        <Label
+          Margin="0,40"
+          Text="Welcome to My App"  
+          FontSize="20"
+          HorizontalOptions="Center" /> 
+
+
+        <Button
+             Margin="30,20"
+             Padding="10,20"
+             HeightRequest="70"
+             WidthRequest="280"             
+             Text="Manage Expenses"
+             BackgroundColor="Teal"
+             FontSize="22"
+             HorizontalOptions="FillAndExpand" 
+            Command="{Binding NavigateToExpensesMainPageCommand}"/>
+            
+    </VerticalStackLayout>
+</ContentPage>

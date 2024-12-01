@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MonthlyExpensesApp.Views.AddMonthPopup"
+             Size="330,250"              
+             Color="AliceBlue">
+
+    <VerticalStackLayout>
+
+        <HorizontalStackLayout BackgroundColor="Bisque">
+            <Image Margin="10,20" Source="calendar.png"/>
+            <Label
+               Margin="10,20"
+               Text="Add Month" 
+               HorizontalOptions="StartAndExpand"           
+               FontSize="18"
+               FontAttributes="Bold"/>
+
+            <Button  
+               Margin="100,-10"               
+               ImageSource="x_close.png"                          
+               BackgroundColor="Transparent"                
+               FontAttributes="Bold"
+               WidthRequest="60"
+               HeightRequest="60"
+               HorizontalOptions="End"
+               Clicked="Button_Clicked"       
+               Command="{Binding CancelSaveMonthCommand}">
+            </Button>
+        </HorizontalStackLayout>
+        
+        <Picker x:Name="monthPicker"
+                Title="Select a month"
+                Margin="20,20"
+                SelectedItem="{Binding AddMonthDetail.SelelctedMonth, Mode=TwoWay}" >
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>January</x:String>
+                    <x:String>February</x:String>
+                    <x:String>March</x:String>
+                    <x:String>April</x:String>
+                    <x:String>May</x:String>
+                    <x:String>June</x:String>
+                    <x:String>July</x:String>
+                    <x:String>August</x:String>
+                    <x:String>September</x:String>
+                    <x:String>October</x:String>
+                    <x:String>November</x:String>
+                    <x:String>December</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+
+            <Button  
+                 Margin="20,20"
+                 Text="Save"
+                 FontSize="20"
+                 WidthRequest="130"             
+                 Command="{Binding SaveMonthCommand}">
+            </Button>
+
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+    
+</toolkit:Popup>
