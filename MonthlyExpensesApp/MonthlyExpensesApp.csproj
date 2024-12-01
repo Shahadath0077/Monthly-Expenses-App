@@ -61,6 +61,7 @@
 	  <None Remove="Resources\Images\calendar_header.png" />
 	  <None Remove="Resources\Images\expenses_main.png" />
 	  <None Remove="Resources\Images\lock_login.png" />
+	  <None Remove="Resources\Images\login_image.png" />
 	  <None Remove="Resources\Images\logout.svg" />
 	  <None Remove="Resources\Images\mainbg.png" />
 	  <None Remove="Resources\Images\money.svg" />

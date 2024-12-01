@@ -22,7 +22,7 @@
             <Button Command="{Binding OpenPopupMonthCommand}" CornerRadius="50" ImageSource="calendar.png" Text="Add Month" FontSize="17" TextColor="Black"  HeightRequest="45" BackgroundColor="orange"/>
         </HorizontalStackLayout>
 
-            <VerticalStackLayout Margin="0,100" HorizontalOptions="Start" IsVisible="{Binding IsLblVisible}">
+        <VerticalStackLayout Margin="0,100" HorizontalOptions="Start" IsVisible="{Binding IsLblVisible}">
                 <Label Margin="30,30" Text="You haven't add any month yet! Please add month" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
             </VerticalStackLayout>
 
@@ -58,8 +58,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-
-
     </VerticalStackLayout>
+        
     </ScrollView>
 </ContentPage>
