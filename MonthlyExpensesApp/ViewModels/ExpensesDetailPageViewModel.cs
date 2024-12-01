@@ -28,7 +28,7 @@ namespace MonthlyExpensesApp.ViewModels
         [ObservableProperty]
         private bool isLblVisible = true;
         [ObservableProperty]
-        private bool isListVisible = false;
+        private bool isListVisible = false;    
         public ExpensesDetailModel expensesDetailModel { get; set; }
 
         private readonly IExpensesDetailService _expensesDetailService;
@@ -61,36 +61,45 @@ namespace MonthlyExpensesApp.ViewModels
                 if (delResponse > 0)
                 {
                     await Shell.Current.DisplayAlert("Message", "Expenses deleted successfully!", "OK");
-                    GetExpensesList();
+                    await GetExpensesList();
                 }
             }
         }
 
         [RelayCommand]
         public async Task GetExpensesList()
-        {          
-            MonthlyExpensesList.Clear();
-            double totalAmount = 0;
-            var expensesList = await _expensesDetailService.GetExpensesList();
-            if (expensesList?.Count > 0)
+        {
+            try
             {
-                IsLblVisible = false;
-                IsListVisible = true;
-                // expensesList = expensesList.OrderByDescending(f => f.ExpensesDate).ToList();
-                foreach (var expense in expensesList)
-                {                                      
-                    //filter by month
-                    if (expense.ExpensesDate.ToString("MMMM") == AddMonthDetail.SelelctedMonth)
+                MonthlyExpensesList.Clear();
+                double totalAmount = 0;              
+                var expensesList = await _expensesDetailService.GetExpensesList();
+                if (expensesList?.Count > 0)
+                {
+                    IsLblVisible = false;
+                    IsListVisible = true;
+                    // expensesList = expensesList.OrderByDescending(f => f.ExpensesDate).ToList();
+                    foreach (var expense in expensesList)
                     {
-                        totalAmount += Convert.ToDouble(expense.Amount);
-                        MonthlyExpensesList.Add(expense);
+                        //Filter by month
+                        if (expense.ExpensesDate.ToString("MMMM") == AddMonthDetail.SelelctedMonth)
+                        {
+                            totalAmount += Convert.ToDouble(expense.Amount);
+                            MonthlyExpensesList.Add(expense);
+                        }
                     }
+                    AddMonthDetail.ShowTotalAmount = totalAmount;
                 }
-                AddMonthDetail.ShowTotalAmount = totalAmount;
+                else
+                {
+                    AddMonthDetail.ShowTotalAmount = totalAmount;
+                }
+            }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine(ex.ToString());   
             }
         }
-
-        
 
     }
 }

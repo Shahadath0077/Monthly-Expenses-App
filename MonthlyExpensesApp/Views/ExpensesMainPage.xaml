@@ -12,10 +12,10 @@
     </Shell.BackButtonBehavior>
 
     <ScrollView>
-    <VerticalStackLayout>
+        <VerticalStackLayout>
 
-        <VerticalStackLayout BackgroundColor="Beige" HeightRequest="200">
-            <Image Margin="0,20" Source="expenses_main.png" HeightRequest="175" WidthRequest="175"  Aspect="AspectFit"/>
+            <VerticalStackLayout BackgroundColor="Beige" HeightRequest="200">
+                <Image Margin="0,20" Source="monthly_expenses.png" HeightRequest="175" WidthRequest="175"  Aspect="AspectFit"/>
         </VerticalStackLayout>
 
         <HorizontalStackLayout Margin="10,5" HorizontalOptions="EndAndExpand">
@@ -31,30 +31,25 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:AddMonthModel">
 
-                    <Frame Margin="10,20">
-                        <VerticalStackLayout>
+                        <Frame Margin="10,20">
+                            <VerticalStackLayout>
 
-                            <Image Source="calendar_header.png" WidthRequest="150" HeightRequest="50"/>
-                            <VerticalStackLayout >
-                                <Label Margin="0,12" Text="{Binding SelelctedMonth}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" TextColor="Blue"/>
+                                <Image Source="calendar_header.png" WidthRequest="150" HeightRequest="50"/>
+                                <VerticalStackLayout >
+                                    <Label Margin="0,12" Text="{Binding SelelctedMonth}" HorizontalTextAlignment="Center" FontSize="20" FontAttributes="Bold" TextColor="Blue"/>
+                                </VerticalStackLayout>
+                                <HorizontalStackLayout HorizontalOptions="Fill" Margin="0,10" >
+                                    <Image Margin="8,0" Source="money.png"/>
+                                    <Label Text="{Binding ShowTotalAmount, StringFormat='{0:n2}'} "  HorizontalTextAlignment="Center"  FontSize="16" TextColor="Red"/>
+                                </HorizontalStackLayout>
+
                             </VerticalStackLayout>
-                            <HorizontalStackLayout HorizontalOptions="Fill" Margin="0,10" >
-                                <Image Margin="8,0" Source="money.png"/>
-                                    <!--<Label Text="RM" FontSize="16" FontAttributes="Bold"/>-->
-                                    <Label Text="{Binding ShowTotalAmount, StringFormat='{0:n2}'}"  HorizontalTextAlignment="Center"  FontSize="16" TextColor="Red"/>
-                            </HorizontalStackLayout>
-
-
-                        </VerticalStackLayout>
-
-                        <Frame.GestureRecognizers>
+                            <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:ExpensesMainPageViewModel}},Path=NavigateToExpensesDetailPageCommand}"
                                            CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
-
-                    </Frame>
-
-                </DataTemplate>
+                        </Frame>
+                    </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 

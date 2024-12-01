@@ -11,7 +11,7 @@
     <VerticalStackLayout>
 
         <VerticalStackLayout BackgroundColor="Beige" HeightRequest="200">
-            <Image  Source="monthly_expenses.png" HeightRequest="200" WidthRequest="200"  Aspect="AspectFit"/>
+                <Image  Source="expenses_main.png" HeightRequest="200" WidthRequest="200"  Aspect="AspectFit"/>
         </VerticalStackLayout>
 
         <HorizontalStackLayout Spacing="20" HorizontalOptions="EndAndExpand" Margin="0,10,10,0" >

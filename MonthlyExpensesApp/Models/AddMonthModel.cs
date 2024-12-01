@@ -16,8 +16,5 @@ namespace MonthlyExpensesApp.Models
 
         [ObservableProperty]
         public double showTotalAmount = 0;
-
-        //public double TotalExpensesAmount { get; set; }
-
     }
 }

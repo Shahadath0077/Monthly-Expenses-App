@@ -6,19 +6,19 @@
              Shell.NavBarIsVisible="False"
              Title="">
 
-        <VerticalStackLayout Margin="20,50">
-        <Label Margin="0,5" Text="Hi, welcome!" TextColor="Navy" FontAttributes="Bold" FontSize="23" HorizontalOptions="Center"/>
+        <VerticalStackLayout Margin="20,0">
+        <Label Margin="0,20" Text="Hi, welcome!" TextColor="Navy" FontAttributes="Bold" FontSize="23" HorizontalOptions="Center"/>
 
 
         <Image Source="login_image.png"
-               Margin="0,20"
-               HeightRequest="180"  
-               WidthRequest="180" 
+               Margin="0,15"
+               HeightRequest="150"  
+               WidthRequest="150" 
                HorizontalOptions="Center"/>
 
-        <Label Margin="0,5" Text="Please login to access" TextColor="Navy" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center"/>
+        <Label Margin="0,2" Text="Please login to access" TextColor="Navy" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center"/>
 
-        <Grid RowDefinitions="*, *, *" Margin="0,50,0,0" Padding="10" RowSpacing="10" HorizontalOptions="Center">
+        <Grid RowDefinitions="*, *, *" Margin="0,30,0,0" Padding="10" RowSpacing="10" HorizontalOptions="Center">
             <StackLayout Orientation="Horizontal">
                 <Image Source="user_login.png" WidthRequest="30" HeightRequest="30" Background="Transparent"></Image>
                 <Entry Text="{Binding LoginDetail.UserName}" HeightRequest="50" WidthRequest="280" Margin="10,0,0,0" Placeholder="User Name" FontAttributes="Bold"></Entry>

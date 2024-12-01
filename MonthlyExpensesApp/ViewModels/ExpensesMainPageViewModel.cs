@@ -54,10 +54,8 @@ namespace MonthlyExpensesApp.ViewModels
         {
             var navParam = new Dictionary<string, object>();
             navParam.Add("AddMonthDetail", addMonthModel);
-            await AppShell.Current.GoToAsync(nameof(ExpensesDetailPage), navParam);
-            //await AppShell.Current.GoToAsync(nameof(ExpensesDetailPage));
+            await AppShell.Current.GoToAsync(nameof(ExpensesDetailPage), navParam);        
         }
-
 
         [RelayCommand]
         public async void OpenPopupMonth()
@@ -118,7 +116,8 @@ namespace MonthlyExpensesApp.ViewModels
                 }
             }
         }
-        public async void ShowMonthlyAmount()
+
+        public async Task ShowMonthlyAmount()
         {           
             var expensesList = await _expensesDetailService.GetExpensesList();
             double totalAmount = 0;
