@@ -14,10 +14,24 @@ namespace MonthlyExpensesApp.Models
         public int ExpensesId { get; set; }
         public string? ExpensesDescription { get; set; }
         public double? Amount { get; set; }
+        public double? GroupTotalAmount { get; set; }
         public DateTime ExpensesDate { get; set; } = DateTime.Now;
-
-        //[ObservableProperty]
-        //public double showTotalAmount = 0;
-
+        
     }
+
+    public class ExpensesGroupModel : List<ExpensesDetailModel>
+    {
+        public DateTime ExpensesDate { get; set; }
+        public double? GroupTotalAmount { get; set; }
+
+        public ExpensesGroupModel(DateTime expensesDate, List<ExpensesDetailModel> expensesList) : base(expensesList)
+        {
+            ExpensesDate = expensesDate;
+            GroupTotalAmount = 0;
+
+
+        }
+    }
+
+
 }

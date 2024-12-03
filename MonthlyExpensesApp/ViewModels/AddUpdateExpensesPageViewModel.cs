@@ -39,7 +39,7 @@ namespace MonthlyExpensesApp.ViewModels
                     }
                     else
                     {
-                        await Shell.Current.DisplayAlert("Heads Up!", "Something went wrong while updating contact", "OK");
+                        await Shell.Current.DisplayAlert("Heads Up!", "Something went wrong while updating expenses", "OK");
                     }
                 }
                 else

@@ -40,7 +40,7 @@ namespace MonthlyExpensesApp.ViewModels
             _addMonthService = addMonthService;
             _expensesDetailService= expensesDetailService;         
             addMonthModel = new AddMonthModel();
-            ShowMonthlyAmount();
+           // ShowMonthlyAmount();
         }
 
         [RelayCommand]
@@ -58,10 +58,10 @@ namespace MonthlyExpensesApp.ViewModels
         }
 
         [RelayCommand]
-        public async void OpenPopupMonth()
+        public void OpenPopupMonth()
         {
-            AddMonthPopup popup = new AddMonthPopup(this);
-            Application.Current.MainPage.ShowPopup(popup);
+            AddMonthPopup popup = new AddMonthPopup(this);            
+            Application.Current?.MainPage?.ShowPopup(popup);
         }
 
         [RelayCommand]
@@ -80,7 +80,7 @@ namespace MonthlyExpensesApp.ViewModels
                 });
                 if (response > 0)
                 {
-                    GetMonthlList();
+                    await GetMonthlList();
                     AddMonthDetail = new AddMonthModel();
                     await Shell.Current.DisplayAlert("Message", "Month created successfully!", "OK");
                 }
@@ -94,13 +94,13 @@ namespace MonthlyExpensesApp.ViewModels
         }
 
         [RelayCommand]
-        public async Task CancelSaveMonth()
+        public void CancelSaveMonth()
         {           
             AddMonthDetail = new AddMonthModel();
         }
 
         [RelayCommand]
-        public async void GetMonthlList()
+        public async Task GetMonthlList()
         {            
             AddMonthList.Clear();
             var monthList = await _addMonthService.GetMonthList();

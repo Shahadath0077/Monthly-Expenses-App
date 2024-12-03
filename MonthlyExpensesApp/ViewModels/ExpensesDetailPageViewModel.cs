@@ -13,11 +13,15 @@ using System.Threading.Tasks;
 
 namespace MonthlyExpensesApp.ViewModels
 {
-    [QueryProperty(nameof(MonthlyExpensesDetail), "MonthlyExpensesDetail")]
+    [QueryProperty(nameof(MonthlyExpensesDetail), "MonthlyExpensesDetail")] 
     [QueryProperty(nameof(AddMonthDetail), "AddMonthDetail")]
+  
     public partial class ExpensesDetailPageViewModel: ObservableObject
-    {   
+    {
         public ObservableCollection<ExpensesDetailModel> MonthlyExpensesList { get; set; } = new ObservableCollection<ExpensesDetailModel>();
+
+        public ObservableCollection<ExpensesGroupModel> MonthlyGroupExpensesList { get; set; } = new ObservableCollection<ExpensesGroupModel>();
+
 
         [ObservableProperty]
         private ExpensesDetailModel _monthlyExpensesDetail = new ExpensesDetailModel();
@@ -25,6 +29,7 @@ namespace MonthlyExpensesApp.ViewModels
         [ObservableProperty]
         private AddMonthModel _addMonthDetail = new AddMonthModel();
 
+        
         [ObservableProperty]
         private bool isLblVisible = true;
         [ObservableProperty]
@@ -40,13 +45,13 @@ namespace MonthlyExpensesApp.ViewModels
         }
 
         [RelayCommand]
-        public async void AddMonthlyExpenses()
+        public async Task AddMonthlyExpenses()
         {
             await AppShell.Current.GoToAsync(nameof(AddUpdateExpensesPage));
         }
 
         [RelayCommand]
-        public async void DisplayAction(ExpensesDetailModel expensesDetailModel)
+        public async Task DisplayAction(ExpensesDetailModel expensesDetailModel)
         {
             var response = await AppShell.Current.DisplayActionSheet("Select Option", "OK", null, "Edit", "Delete");
             if (response == "Edit")
@@ -68,17 +73,27 @@ namespace MonthlyExpensesApp.ViewModels
 
         [RelayCommand]
         public async Task GetExpensesList()
+        {          
+            await getexpensesList();       
+        } 
+
+        public async Task getexpensesList()
         {
             try
             {
+                // clear the list
                 MonthlyExpensesList.Clear();
-                double totalAmount = 0;              
+                MonthlyGroupExpensesList.Clear();
+                double totalAmount = 0;
+               // double totalGroupAmount = 0;
+
                 var expensesList = await _expensesDetailService.GetExpensesList();
+
                 if (expensesList?.Count > 0)
                 {
                     IsLblVisible = false;
                     IsListVisible = true;
-                    // expensesList = expensesList.OrderByDescending(f => f.ExpensesDate).ToList();
+
                     foreach (var expense in expensesList)
                     {
                         //Filter by month
@@ -88,6 +103,22 @@ namespace MonthlyExpensesApp.ViewModels
                             MonthlyExpensesList.Add(expense);
                         }
                     }
+
+                    // group the list by date
+                    var dic = (MonthlyExpensesList.GroupBy(x => x.ExpensesDate.Date).ToDictionary(d => d.Key, d => d.ToList()));
+
+                    foreach (KeyValuePair<DateTime, List<ExpensesDetailModel>> item in dic)
+                    {                      
+                        MonthlyGroupExpensesList.Add(new ExpensesGroupModel(item.Key, new List<ExpensesDetailModel>(item.Value)));
+
+
+                        //foreach(var data in item.Value)
+                        //{
+                        //    totalGroupAmount += Convert.ToDouble(data.Amount);
+                        //}
+                       
+                        //MonthlyExpensesDetail.GroupTotalAmount = totalGroupAmount;
+                    }
                     AddMonthDetail.ShowTotalAmount = totalAmount;
                 }
                 else
@@ -95,11 +126,10 @@ namespace MonthlyExpensesApp.ViewModels
                     AddMonthDetail.ShowTotalAmount = totalAmount;
                 }
             }
-            catch (Exception ex) 
-            { 
-                Console.WriteLine(ex.ToString());   
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
         }
-
     }
 }

@@ -10,8 +10,8 @@ public partial class ExpensesDetailPage : ContentPage
 	{
 		InitializeComponent();
         _expensesDetailViewModel= expensesDetailViewModel;
-        this.BindingContext = _expensesDetailViewModel;     
-        //_expensesDetailViewModel.GetExpensesList();
+        this.BindingContext = _expensesDetailViewModel;
+       // _expensesDetailViewModel.GetExpensesListCommand.Execute(null);
     }
 
     protected override void OnAppearing()

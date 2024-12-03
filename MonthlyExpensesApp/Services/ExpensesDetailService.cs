@@ -25,7 +25,7 @@ namespace MonthlyExpensesApp.Services
         public async Task<List<ExpensesDetailModel>> GetExpensesList()
         {
             await SQLiteDbConnect.ConnectDb();
-            var expensesList = await SQLiteDbConnect._dbConnection.Table<ExpensesDetailModel>().ToListAsync();
+            var expensesList = await SQLiteDbConnect._dbConnection.Table<ExpensesDetailModel>().OrderByDescending(x=>x.ExpensesDate).ToListAsync();
             return expensesList;
         }
 
