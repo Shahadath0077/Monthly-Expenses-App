@@ -11,12 +11,21 @@ public partial class ExpensesDetailPage : ContentPage
 		InitializeComponent();
         _expensesDetailViewModel= expensesDetailViewModel;
         this.BindingContext = _expensesDetailViewModel;
+
+
        // _expensesDetailViewModel.GetExpensesListCommand.Execute(null);
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        
+
         _expensesDetailViewModel.GetExpensesListCommand.Execute(null);
+    }
+
+    public void ChangeLabel()
+    {
+        
     }
 }

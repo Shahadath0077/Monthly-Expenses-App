@@ -7,54 +7,48 @@
              BackgroundColor="AliceBlue"
              Title="Expenses Detail">
     <ScrollView>
-   
-    <VerticalStackLayout>
 
-        <!--<VerticalStackLayout BackgroundColor="Beige" HeightRequest="200">
-                <Image  Source="expenses_main.png" HeightRequest="200" WidthRequest="200"  Aspect="AspectFit"/>
-        </VerticalStackLayout>-->
-
-        <HorizontalStackLayout Spacing="20" HorizontalOptions="Start" >
-            <HorizontalStackLayout>
-                <Image Margin="10,-20" Source="calendar.png" />
-                <Label Margin="3,20" Text="{Binding AddMonthDetail.SelelctedMonth}" FontSize="20" TextColor="Maroon" FontAttributes="Bold" />
-            </HorizontalStackLayout>
+        <VerticalStackLayout>
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Start" >
+                <HorizontalStackLayout>
+                    <Image Margin="10,-20" Source="calendar.png" />
+                    <Label Margin="3,20"  Text="{Binding AddMonthDetail.SelelctedMonth}" FontSize="20" TextColor="Maroon" FontAttributes="Bold" />
+                </HorizontalStackLayout>
                 <Button Margin="16,5"  Command="{Binding AddMonthlyExpensesCommand}" CornerRadius="50" ImageSource="money.png" Text="Add Expenses" FontSize="17" TextColor="Black" HorizontalOptions="End"  HeightRequest="45" BackgroundColor="orange"/>
-        </HorizontalStackLayout>
+            </HorizontalStackLayout>
 
-        <VerticalStackLayout Margin="0,100" HorizontalOptions="Start" IsVisible="{Binding IsLblVisible}">
-          <Label Margin="30,30" Text="You haven't add any expenses yet! Please add expenses" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
-        </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,100" HorizontalOptions="Start" IsVisible="{Binding IsLblVisible}">
+                <Label Margin="30,30" Text="You haven't add any expenses yet! Please add expenses" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
+            </VerticalStackLayout>
 
 
             <CollectionView Margin="10,8" ItemsSource="{Binding MonthlyGroupExpensesList}" IsGrouped="True" >
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate x:DataType="models:ExpensesGroupModel">
-                        <Frame Margin="0,5" Padding="10" HeightRequest="50" BorderColor="Transparent" BackgroundColor="Bisque">
-                            <HorizontalStackLayout HorizontalOptions="Start">
-                                <!--<Image Margin="1,0" Source="calendar.png" />-->
-                                <Label Text="{Binding ExpensesDate,StringFormat='{0:d}'}" FontSize="20"  TextColor="Black" FontAttributes="Bold"/>
-                            </HorizontalStackLayout>
-
+                        <Frame Margin="0,5" Padding="10" HeightRequest="50" BorderColor="Transparent" BackgroundColor="Bisque" >
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout HorizontalOptions="Start">
+                                    <Label Text="{Binding ExpensesDate,StringFormat='{0:d}'}" FontSize="18" TextColor="Black" FontAttributes="Bold" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout HorizontalOptions="EndAndExpand">
+                                    <Label  Margin="0,-25" Text="{Binding Amount,StringFormat='{0:n2}'}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ExpensesDetailModel">
-                        <Frame Margin="0" Padding="10" CornerRadius="1">
-
+                        <Frame Margin="0" Padding="10" CornerRadius="0">
                             <VerticalStackLayout>
-
                                 <HorizontalStackLayout HorizontalOptions="Start">
-                                    <Label Text="{Binding ExpensesDescription}" FontSize="18" FontAttributes="Bold" />
+                                    <Label Text="{Binding ExpensesDescription}" FontSize="16" FontAttributes="Bold" />
                                 </HorizontalStackLayout>
-
                                 <HorizontalStackLayout HorizontalOptions="EndAndExpand">
                                     <Label  Margin="0,-25" Text="{Binding Amount,StringFormat='{0:n2}'}" FontSize="18" FontAttributes="Bold" TextColor="Red"/>
                                 </HorizontalStackLayout>
-
                             </VerticalStackLayout>
 
                             <Frame.GestureRecognizers>
@@ -67,8 +61,7 @@
 
             </CollectionView>
 
-
-        <!--<CollectionView ItemsSource="{Binding MonthlyExpensesList}" Margin="10,8" IsVisible="{Binding IsListVisible}">
+            <!--<CollectionView ItemsSource="{Binding MonthlyExpensesList}" Margin="10,8" IsVisible="{Binding IsListVisible}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:ExpensesDetailModel" >
 
@@ -100,9 +93,6 @@
                 
             </CollectionView>-->
 
-
-    </VerticalStackLayout>
-        
+        </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

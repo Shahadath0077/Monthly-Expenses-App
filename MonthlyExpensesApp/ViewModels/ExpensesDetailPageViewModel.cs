@@ -22,7 +22,6 @@ namespace MonthlyExpensesApp.ViewModels
 
         public ObservableCollection<ExpensesGroupModel> MonthlyGroupExpensesList { get; set; } = new ObservableCollection<ExpensesGroupModel>();
 
-
         [ObservableProperty]
         private ExpensesDetailModel _monthlyExpensesDetail = new ExpensesDetailModel();
 
@@ -84,16 +83,12 @@ namespace MonthlyExpensesApp.ViewModels
                 // clear the list
                 MonthlyExpensesList.Clear();
                 MonthlyGroupExpensesList.Clear();
-                double totalAmount = 0;
-               // double totalGroupAmount = 0;
-
+                double totalAmount = 0;             
                 var expensesList = await _expensesDetailService.GetExpensesList();
-
                 if (expensesList?.Count > 0)
                 {
                     IsLblVisible = false;
                     IsListVisible = true;
-
                     foreach (var expense in expensesList)
                     {
                         //Filter by month
@@ -103,23 +98,14 @@ namespace MonthlyExpensesApp.ViewModels
                             MonthlyExpensesList.Add(expense);
                         }
                     }
-
                     // group the list by date
-                    var dic = (MonthlyExpensesList.GroupBy(x => x.ExpensesDate.Date).ToDictionary(d => d.Key, d => d.ToList()));
+                    var dic = MonthlyExpensesList.GroupBy(x => x.ExpensesDate.Date).ToDictionary(d => d.Key, d => d.ToList());
 
                     foreach (KeyValuePair<DateTime, List<ExpensesDetailModel>> item in dic)
                     {                      
-                        MonthlyGroupExpensesList.Add(new ExpensesGroupModel(item.Key, new List<ExpensesDetailModel>(item.Value)));
-
-
-                        //foreach(var data in item.Value)
-                        //{
-                        //    totalGroupAmount += Convert.ToDouble(data.Amount);
-                        //}
-                       
-                        //MonthlyExpensesDetail.GroupTotalAmount = totalGroupAmount;
-                    }
-                    AddMonthDetail.ShowTotalAmount = totalAmount;
+                     MonthlyGroupExpensesList.Add(new ExpensesGroupModel(item.Key, new List<ExpensesDetailModel>(item.Value)));                  
+                    } 
+                    AddMonthDetail.ShowTotalAmount = totalAmount; 
                 }
                 else
                 {

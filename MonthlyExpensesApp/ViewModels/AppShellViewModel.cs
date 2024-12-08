@@ -19,14 +19,14 @@ namespace MonthlyExpensesApp.ViewModels
         //}
 
         [RelayCommand]
-        async void Logout()
+        public void Logout()
         {
             if (Preferences.ContainsKey(nameof(App.registrationModel)))
             {
                 Preferences.Remove(nameof(App.registrationModel));
             }
-           // await Shell.Current.GoToAsync("..");
-            await Shell.Current.Navigation.PopToRootAsync();
+             Shell.Current.GoToAsync("..");
+            //await Shell.Current.Navigation.PopToRootAsync();
         }
 
     }

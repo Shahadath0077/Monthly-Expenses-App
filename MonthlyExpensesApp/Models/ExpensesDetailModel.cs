@@ -13,25 +13,18 @@ namespace MonthlyExpensesApp.Models
         [PrimaryKey, AutoIncrement]
         public int ExpensesId { get; set; }
         public string? ExpensesDescription { get; set; }
-        public double? Amount { get; set; }
+        public double? Amount { get; set; }       
+        public DateTime ExpensesDate { get; set; } = DateTime.Now;     
         public double? GroupTotalAmount { get; set; }
-        public DateTime ExpensesDate { get; set; } = DateTime.Now;
-        
     }
-
     public class ExpensesGroupModel : List<ExpensesDetailModel>
     {
         public DateTime ExpensesDate { get; set; }
-        public double? GroupTotalAmount { get; set; }
-
+        public double? Amount { get; set; }       
         public ExpensesGroupModel(DateTime expensesDate, List<ExpensesDetailModel> expensesList) : base(expensesList)
         {
             ExpensesDate = expensesDate;
-            GroupTotalAmount = 0;
-
-
+            Amount = expensesList.Where(x => x.Amount.HasValue).Sum(x => x.Amount.Value);           
         }
     }
-
-
 }
