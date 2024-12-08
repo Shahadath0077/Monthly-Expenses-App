@@ -15,8 +15,6 @@
             ContentTemplate="{DataTemplate views:LoginPage}"
             Route="MainPage" />
 
-   
-
     <MenuItem
           Text="Log Out"             
           IconImageSource="logout.png"  
