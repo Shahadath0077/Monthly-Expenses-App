@@ -66,7 +66,7 @@ namespace MonthlyExpensesApp.ViewModels
         }
 
         [RelayCommand]
-        public async void UserRegistration()
+        public async Task UserRegistration()
         {
             await AppShell.Current.GoToAsync(nameof(RegistrationPage));
         }

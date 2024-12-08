@@ -10,7 +10,7 @@ namespace MonthlyExpensesApp.SQLiteHelper
 {  
     public class SQLiteDbConnect
     {
-        public static SQLiteAsyncConnection _dbConnection;
+        public static SQLiteAsyncConnection? _dbConnection;
         public static async Task ConnectDb()
         {
             if (_dbConnection == null)

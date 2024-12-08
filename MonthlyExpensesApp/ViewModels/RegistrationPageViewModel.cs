@@ -55,7 +55,7 @@ namespace MonthlyExpensesApp.ViewModels
         }
 
         [RelayCommand]
-        public async void NavigateToLoginPage()
+        public async Task NavigateToLoginPage()
         {
             await AppShell.Current.GoToAsync(("/LoginPage"));
         }
