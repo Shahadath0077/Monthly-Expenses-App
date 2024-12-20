@@ -40,7 +40,6 @@ namespace MonthlyExpensesApp.ViewModels
             _addMonthService = addMonthService;
             _expensesDetailService= expensesDetailService;         
             addMonthModel = new AddMonthModel();
-           // ShowMonthlyAmount();
         }
 
         [RelayCommand]

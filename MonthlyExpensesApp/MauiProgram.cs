@@ -31,7 +31,7 @@ namespace MonthlyExpensesApp
             builder.Services.AddSingleton<ExpensesMainPage>();
             builder.Services.AddSingleton<AddMonthPopup>();
             builder.Services.AddSingleton<ExpensesDetailPage>();
-            builder.Services.AddSingleton<AddUpdateExpensesPage>();
+            builder.Services.AddTransient<AddUpdateExpensesPage>();
 
 
             // ViewModels Registration
@@ -40,7 +40,7 @@ namespace MonthlyExpensesApp
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<ExpensesMainPageViewModel>();
             builder.Services.AddSingleton<ExpensesDetailPageViewModel>();
-            builder.Services.AddSingleton<AddUpdateExpensesPageViewModel>();
+            builder.Services.AddTransient<AddUpdateExpensesPageViewModel>();
 
 
             // Services Registration

@@ -24,7 +24,7 @@
 
         <VerticalStackLayout Margin="0,100" HorizontalOptions="Start" IsVisible="{Binding IsLblVisible}">
                 <Label Margin="30,30" Text="You haven't add any month yet! Please add month" FontSize="16" TextColor="Gray" HorizontalOptions="Start" />
-            </VerticalStackLayout>
+        </VerticalStackLayout>
 
 
         <CollectionView ItemsSource="{Binding AddMonthList}" ItemsLayout="VerticalGrid, 2" Margin="10,10" IsVisible="{Binding IsListVisible}">

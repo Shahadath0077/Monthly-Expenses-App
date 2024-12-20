@@ -2,11 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MonthlyExpensesApp.Models;
 using MonthlyExpensesApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace MonthlyExpensesApp.ViewModels
 {
@@ -16,13 +12,10 @@ namespace MonthlyExpensesApp.ViewModels
         [ObservableProperty]
         private ExpensesDetailModel _expensesDetail = new ExpensesDetailModel();
 
-        private readonly IExpensesDetailService _expensesDetailService;      
-        private ExpensesDetailModel _expensesDetailModel {  get; set; }  
-
+        private readonly IExpensesDetailService _expensesDetailService;         
         public AddUpdateExpensesPageViewModel(IExpensesDetailService expensesDetailService)
         {
-            _expensesDetailService = expensesDetailService;
-            _expensesDetailModel=new ExpensesDetailModel();
+            _expensesDetailService = expensesDetailService;            
         }
         [RelayCommand]
         public async Task AddUpdateMonthlyExpenses()
@@ -36,6 +29,7 @@ namespace MonthlyExpensesApp.ViewModels
                     if (response > 0)
                     {
                         await Shell.Current.DisplayAlert("Message", "Expenses updated successfully!", "OK");
+                    
                     }
                     else
                     {
@@ -66,14 +60,15 @@ namespace MonthlyExpensesApp.ViewModels
                     {
                         await Shell.Current.DisplayAlert("Message", "Enter all the required fields!", "OK");
                     }
+                    ExpensesDetail = new ExpensesDetailModel();
                 }
-                ExpensesDetail = new ExpensesDetailModel();
+               
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-            }
-           
+                await Shell.Current.DisplayAlert("Error!", $"{ex}", "OK");
+                //Console.WriteLine(ex.ToString());
+            }           
         }
     }
 }

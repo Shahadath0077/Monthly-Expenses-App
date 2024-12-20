@@ -4,22 +4,18 @@ namespace MonthlyExpensesApp.Views;
 
 public partial class AddUpdateExpensesPage : ContentPage
 {
-    // private ExpensesDetailPageViewModel _expensesDetailViewModel;
-
-    //   public AddUpdateExpensesPage(ExpensesDetailPageViewModel expensesDetailViewModel)
+    //private AddUpdateExpensesPageViewModel _addUpdateExpensesPageViewModel;
+    //public AddUpdateExpensesPage(AddUpdateExpensesPageViewModel addUpdateExpensesPageViewModel)
     //{
-    //	InitializeComponent();
-    //       _expensesDetailViewModel = expensesDetailViewModel;
-    //       this.BindingContext = _expensesDetailViewModel;
+    //    InitializeComponent();
+    //    _addUpdateExpensesPageViewModel = addUpdateExpensesPageViewModel;
+    //    this.BindingContext = _addUpdateExpensesPageViewModel;
+    //}
 
-    //   }
-
-    private AddUpdateExpensesPageViewModel _addUpdateExpensesPageViewModel;
     public AddUpdateExpensesPage(AddUpdateExpensesPageViewModel addUpdateExpensesPageViewModel)
     {
         InitializeComponent();
-        _addUpdateExpensesPageViewModel = addUpdateExpensesPageViewModel;
-        this.BindingContext = _addUpdateExpensesPageViewModel;
+        this.BindingContext = addUpdateExpensesPageViewModel;
 
     }
 }

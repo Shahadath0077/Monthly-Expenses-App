@@ -1,21 +1,13 @@
-﻿using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MonthlyExpensesApp.Models;
 using MonthlyExpensesApp.Services;
 using MonthlyExpensesApp.Views;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonthlyExpensesApp.ViewModels
 {
-    [QueryProperty(nameof(MonthlyExpensesDetail), "MonthlyExpensesDetail")] 
     [QueryProperty(nameof(AddMonthDetail), "AddMonthDetail")]
-  
     public partial class ExpensesDetailPageViewModel: ObservableObject
     {
         public ObservableCollection<ExpensesDetailModel> MonthlyExpensesList { get; set; } = new ObservableCollection<ExpensesDetailModel>();
@@ -23,24 +15,19 @@ namespace MonthlyExpensesApp.ViewModels
         public ObservableCollection<ExpensesGroupModel> MonthlyGroupExpensesList { get; set; } = new ObservableCollection<ExpensesGroupModel>();
 
         [ObservableProperty]
-        private ExpensesDetailModel _monthlyExpensesDetail = new ExpensesDetailModel();
-
-        [ObservableProperty]
         private AddMonthModel _addMonthDetail = new AddMonthModel();
 
-        
+       
         [ObservableProperty]
         private bool isLblVisible = true;
         [ObservableProperty]
         private bool isListVisible = false;    
-        public ExpensesDetailModel expensesDetailModel { get; set; }
-
+       
         private readonly IExpensesDetailService _expensesDetailService;
        
         public ExpensesDetailPageViewModel(IExpensesDetailService expensesDetailService)
         {
-            _expensesDetailService = expensesDetailService;
-            expensesDetailModel = new ExpensesDetailModel();          
+            _expensesDetailService = expensesDetailService;                   
         }
 
         [RelayCommand]
@@ -72,18 +59,12 @@ namespace MonthlyExpensesApp.ViewModels
 
         [RelayCommand]
         public async Task GetExpensesList()
-        {          
-            await getexpensesList();       
-        } 
-
-        public async Task getexpensesList()
         {
             try
-            {
-                // clear the list
+            {               
                 MonthlyExpensesList.Clear();
                 MonthlyGroupExpensesList.Clear();
-                double totalAmount = 0;             
+                double totalAmount = 0;
                 var expensesList = await _expensesDetailService.GetExpensesList();
                 if (expensesList?.Count > 0)
                 {
@@ -102,10 +83,10 @@ namespace MonthlyExpensesApp.ViewModels
                     var dic = MonthlyExpensesList.GroupBy(x => x.ExpensesDate.Date).ToDictionary(d => d.Key, d => d.ToList());
 
                     foreach (KeyValuePair<DateTime, List<ExpensesDetailModel>> item in dic)
-                    {                      
-                     MonthlyGroupExpensesList.Add(new ExpensesGroupModel(item.Key, new List<ExpensesDetailModel>(item.Value)));                  
-                    } 
-                    AddMonthDetail.ShowTotalAmount = totalAmount; 
+                    {
+                        MonthlyGroupExpensesList.Add(new ExpensesGroupModel(item.Key, new List<ExpensesDetailModel>(item.Value)));
+                    }
+                    AddMonthDetail.ShowTotalAmount = totalAmount;
                 }
                 else
                 {
@@ -116,6 +97,6 @@ namespace MonthlyExpensesApp.ViewModels
             {
                 Console.WriteLine(ex.ToString());
             }
-        }
+        }  
     }
 }
